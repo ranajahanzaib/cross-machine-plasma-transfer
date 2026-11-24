@@ -1,0 +1,15 @@
+{
+  "name": "cross-machine-plasma-transfer",
+  "private": true,
+  "scripts": {
+    "dev": "./scripts/dev.sh",
+    "dev:web": "pnpm --filter @plasma/web dev",
+    "build": "pnpm --filter @plasma/web build",
+    "typecheck": "pnpm --filter @plasma/web typecheck",
+    "test": "uv run pytest"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3",
+    "prettier": "^3.5.2"
+  }
+}
