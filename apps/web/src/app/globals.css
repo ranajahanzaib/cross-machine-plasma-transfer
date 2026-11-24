@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #090d14;
+  --surface: #101620;
+  --surface-elevated: #171f2c;
+  --border: #263142;
+  --foreground: #e8edf5;
+  --muted: #8995a8;
+  --source: #38c5f4;
+  --target: #fb9162;
+  --accent: #8d91ff;
+  --positive: #45d6ae;
+  --warning: #f2c66d;
+  --negative: #f16e87;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbars for technical scientific look */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #101620;
+}
+::-webkit-scrollbar-thumb {
+  background: #263142;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #38c5f4;
+}
