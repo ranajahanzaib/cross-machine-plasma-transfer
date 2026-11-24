@@ -1,9 +1,15 @@
 # Security Policy
 
+## Supported Versions
+
+| Version | Supported          |
+| ------- | ------------------ |
+| 0.1.x   | :white_check_mark: |
+
 ## Reporting a Vulnerability
 
-Please do not report security vulnerabilities through public GitHub issues.
+If you discover a security vulnerability within Cross-Machine Plasma Transfer Analysis, please report it privately.
 
-Instead, report them via GitHub's private [Security Advisories](../../security/advisories/new) feature. Include as much detail as possible: a description of the issue, steps to reproduce, and potential impact.
+Please do not open a public issue. Instead, email security disclosures to `work@withrana.com` or use GitHub's private vulnerability reporting feature.
 
-You can expect an acknowledgment within 48 hours and a resolution timeline once the issue is confirmed.
+All security reports will be acknowledged within 48 hours, and a coordinated fix will be published in a timely release.

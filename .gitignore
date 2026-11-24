@@ -73,9 +73,9 @@ yarn-error.log*
 # Python
 venv
 .venv
+.pytest_cache
 
 PLAN.md
 
 __pycache__
 
-.pytest_cache

@@ -1,46 +1,33 @@
 ## Contributing
 
-We welcome contributions of all kinds to improve this project! Here's how you can get involved:
+We welcome contributions of all kinds from researchers, computational physicists, and software engineers to improve this project.
 
-1. **Fork the Repository**: Start by forking the repository to your GitHub account.
+### How to Get Involved
 
-2. **Clone Your Fork**: Clone the forked repository to your local machine:
-
+1. **Fork the Repository**: Fork the repository to your GitHub account.
+2. **Clone Your Fork**:
    ```bash
-   git clone <repo_url>
-   cd repo_dir
+   git clone https://github.com/ranajahanzaib/cross-machine-plasma-transfer.git
+   cd cross-machine-plasma-transfer
    ```
-
-3. **Create a Branch**: Create a new branch for your feature or bug fix:
-
+3. **Set Up the Environment**:
    ```bash
-   git checkout -b feature-name
+   uv sync
+   pnpm install
    ```
-
-4. **Make Changes**: Make your changes to the codebase. Be sure to follow existing code style and conventions.
-
-5. **Commit Changes**: Commit your changes with a clear and descriptive message:
-
+4. **Create a Feature Branch**:
    ```bash
-   git commit -m "Add detailed description of the changes"
+   git checkout -b feature/your-feature-name
    ```
-
-6. **Push Changes**: Push your changes to your fork:
-
+5. **Run Tests & Verify Lineage**:
    ```bash
-   git push origin feature-name
+   uv run pytest tests/
+   pnpm build
    ```
+6. **Submit a Pull Request**: Push your branch and open a Pull Request with a clear summary of your physical/computational additions.
 
-7. **Submit a Pull Request**: Open a pull request from your branch to the main repository's branch. Include a detailed description of your changes and the problem they solve.
+### Scientific Integrity & Leakage Prevention Guidelines
 
-8. **Review and Feedback**: Participate in the review process. Make any requested changes, and your contribution will be merged!
-
-### Guidelines
-
-- Ensure your code follows the existing style and conventions.
-- Include tests for any new functionality or bug fixes.
-- Write clear, concise commit messages and pull request descriptions.
-
-### Issues
-
-Feel free to report bugs or suggest enhancements by creating an issue. Be sure to include detailed information about the problem and, if possible, steps to reproduce it.
+- Never introduce target machine (MAST) equilibrium labels into feature generation or preprocessing steps for Protocol A and B experiments.
+- Always run `ProtocolGuard` checks when introducing new feature families or models.
+- Maintain reproducible random seeds and documented unit conversions.
