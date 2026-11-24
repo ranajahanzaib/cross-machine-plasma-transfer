@@ -2,7 +2,7 @@
 
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 
 type Overview = {
   metadata: {
@@ -19,10 +19,11 @@ type Overview = {
 export default function ExperimentDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = use(params);
   const [overview, setOverview] = useState<Overview | null>(null);
-  const isQuickstart = params.id === "quickstart_analysis";
+  const isQuickstart = id === "quickstart_analysis";
 
   useEffect(() => {
     if (!isQuickstart) return;
@@ -32,7 +33,9 @@ export default function ExperimentDetailPage({
         return response.json();
       })
       .then(setOverview)
-      .catch((error) => console.error("Failed to load analysis summary:", error));
+      .catch((error) =>
+        console.error("Failed to load analysis summary:", error),
+      );
   }, [isQuickstart]);
 
   return (
@@ -49,13 +52,15 @@ export default function ExperimentDetailPage({
           <h1 className="text-xl font-bold text-foreground">
             {isQuickstart ? "Quickstart Analysis" : "Analysis Not Found"}
           </h1>
-          <p className="text-xs text-muted">Generated analysis artifact summary</p>
+          <p className="text-xs text-muted">
+            Generated analysis artifact summary
+          </p>
         </div>
       </div>
 
       {!isQuickstart ? (
         <div className="bg-surface rounded-xl border border-border p-5 text-xs text-muted">
-          This repository does not contain a persisted run with ID “{params.id}”.
+          This repository does not contain a persisted run with ID “{id}”.
           Return to the registry to inspect the available quickstart analysis.
         </div>
       ) : overview ? (
@@ -68,31 +73,62 @@ export default function ExperimentDetailPage({
               </div>
             </div>
             <div className="bg-surface rounded-lg border border-border p-4">
-              <span className="text-[10px] text-muted uppercase">Observations</span>
+              <span className="text-[10px] text-muted uppercase">
+                Observations
+              </span>
               <div className="text-lg font-bold text-foreground mt-1">
                 {overview.metadata.num_observations.toLocaleString()}
               </div>
             </div>
             <div className="bg-surface rounded-lg border border-border p-4">
-              <span className="text-[10px] text-muted uppercase">Feature Count</span>
+              <span className="text-[10px] text-muted uppercase">
+                Feature Count
+              </span>
               <div className="text-lg font-bold text-foreground mt-1">
                 {overview.metadata.features_count}
               </div>
             </div>
           </div>
           <div className="bg-surface rounded-xl border border-border p-5 space-y-3 font-mono text-xs">
-            <h2 className="text-sm font-bold text-foreground">Artifact Metrics</h2>
+            <h2 className="text-sm font-bold text-foreground">
+              Artifact Metrics
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-muted">
-              <div>DIII-D observations: <span className="text-foreground">{overview.metadata.d3d_observations.toLocaleString()}</span></div>
-              <div>MAST observations: <span className="text-foreground">{overview.metadata.mast_observations.toLocaleString()}</span></div>
-              <div>Source MAE (ψ): <span className="text-foreground">{overview.metadata.source_mae_flux.toFixed(4)} V·s/rad</span></div>
-              <div>Domain MMD: <span className="text-foreground">{overview.domain_shift_summary.mmd.toFixed(3)}</span></div>
-              <div>Domain classifier ROC-AUC: <span className="text-foreground">{overview.domain_shift_summary.classifier_roc_auc.toFixed(2)}</span></div>
+              <div>
+                DIII-D observations:{" "}
+                <span className="text-foreground">
+                  {overview.metadata.d3d_observations.toLocaleString()}
+                </span>
+              </div>
+              <div>
+                MAST observations:{" "}
+                <span className="text-foreground">
+                  {overview.metadata.mast_observations.toLocaleString()}
+                </span>
+              </div>
+              <div>
+                Source MAE (ψ):{" "}
+                <span className="text-foreground">
+                  {overview.metadata.source_mae_flux.toFixed(4)} V·s/rad
+                </span>
+              </div>
+              <div>
+                Domain MMD:{" "}
+                <span className="text-foreground">
+                  {overview.domain_shift_summary.mmd.toFixed(3)}
+                </span>
+              </div>
+              <div>
+                Domain classifier ROC-AUC:{" "}
+                <span className="text-foreground">
+                  {overview.domain_shift_summary.classifier_roc_auc.toFixed(2)}
+                </span>
+              </div>
             </div>
             <p className="pt-2 text-muted">
-              These values are read from the generated quickstart artifact. It does
-              not include run lineage records, model checkpoints, or independent
-              ProtocolGuard audit results.
+              These values are read from the generated quickstart artifact. It
+              does not include run lineage records, model checkpoints, or
+              independent ProtocolGuard audit results.
             </p>
           </div>
         </>

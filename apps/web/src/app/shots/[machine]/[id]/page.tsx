@@ -2,13 +2,14 @@
 
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 
 export default function ShotDetailPage({
   params,
 }: {
-  params: { machine: string; id: string };
+  params: Promise<{ machine: string; id: string }>;
 }) {
+  const { machine, id } = use(params);
   const [shots, setShots] = useState<any[]>([]);
 
   useEffect(() => {
@@ -18,9 +19,7 @@ export default function ShotDetailPage({
       .catch((err) => console.error(err));
   }, []);
 
-  const shot = shots.find(
-    (s) => s.shot_id === params.id || s.shot_id.includes(params.id),
-  );
+  const shot = shots.find((s) => s.shot_id === id || s.shot_id.includes(id));
 
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
@@ -33,11 +32,9 @@ export default function ShotDetailPage({
         </Link>
         <div>
           <h1 className="text-xl font-bold text-foreground">
-            Discharge Analysis: {params.id}
+            Discharge Analysis: {id}
           </h1>
-          <p className="text-xs text-muted">
-            Machine: {params.machine.toUpperCase()}
-          </p>
+          <p className="text-xs text-muted">Machine: {machine.toUpperCase()}</p>
         </div>
       </div>
 
@@ -47,7 +44,7 @@ export default function ShotDetailPage({
             Machine Identifier
           </span>
           <div className="text-lg font-bold text-foreground mt-1">
-            {params.machine.toUpperCase()}
+            {machine.toUpperCase()}
           </div>
         </div>
         <div className="bg-surface rounded-lg border border-border p-4">
