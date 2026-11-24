@@ -7,7 +7,7 @@ from pydantic import BaseModel, Field
 
 class ResearchProtocol(str, Enum):
     """Explicitly separated research protocols.
-    
+
     Protocol A: Strict source-only transfer. Trained exclusively on DIII-D, zero target fitting.
     Protocol B: Challenge-compatible label-free adaptation. Allows unlabelled MAST inputs/geometry.
                 Strictly prohibits target labels or label-derived priors.

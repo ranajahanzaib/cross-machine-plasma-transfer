@@ -51,7 +51,7 @@ def compute_conductor_polygon(
     angle2_deg: float = 0.0,
 ) -> List[List[float]]:
     """Compute physical R-Z vertices for a conductor element.
-    
+
     Rules from challenge README:
     - 0.0 means 'no skew - a plain axis-aligned rectangle' (same as 90 deg in EFIT).
     - If angle1 == 0 and angle2 == 0, it's a rectangle: [R +/- width/2, Z +/- height/2].

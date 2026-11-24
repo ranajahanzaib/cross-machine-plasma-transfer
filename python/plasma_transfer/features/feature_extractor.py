@@ -45,7 +45,7 @@ class FeatureExtractor:
         machine: str,
     ) -> Tuple[np.ndarray, List[str], np.ndarray]:
         """Extract harmonized features for every efit_times frame in a shot.
-        
+
         Returns:
             X: np.ndarray of shape (T, num_features)
             feature_names: List[str] of length num_features

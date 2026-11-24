@@ -12,10 +12,10 @@ class SpatialUncertaintyEstimator:
     @staticmethod
     def compute_ensemble_uncertainty(flux_predictions: np.ndarray) -> Dict[str, np.ndarray]:
         """Compute mean prediction and spatial uncertainty from ensemble predictions.
-        
+
         Args:
             flux_predictions: np.ndarray of shape (N_models, Batch_size, 65, 65)
-            
+
         Returns:
             Dict containing:
                 "mean_flux": (Batch_size, 65, 65)

@@ -116,7 +116,7 @@ def get_markdown_report():
     data = load_artifacts()
     meta = data["metadata"]
     shift = data["domain_shift"]
-    
+
     report = f"""# Cross-Machine Plasma Transfer Analysis: Scientific Research Report
 
 ## 1. Executive Summary

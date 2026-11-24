@@ -18,7 +18,7 @@ class SignalHarmonizer:
         target_times: np.ndarray,
     ) -> Tuple[np.ndarray, np.ndarray]:
         """Align a 1D time-series onto target_times (efit_times) with gap-aware linear interpolation.
-        
+
         Returns:
             aligned_values: np.ndarray of shape (len(target_times),)
             valid_mask: np.ndarray bool of shape (len(target_times),) (True where measurement is valid)
